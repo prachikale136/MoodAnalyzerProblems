@@ -10,8 +10,9 @@ namespace MoodAnalyzerTest
             string expected = "Sad";
             //create a object of cass moodanalyzer with i am sad
             MoodAnalyze moodAnalyzer = new MoodAnalyze("I am Sad");
+            string result = moodAnalyzer.AnalyzeMood(expected);
             //assertion is a boolean expression at a specific point in a program 
-            Assert.AreEqual(expected, moodAnalyzer.AnalyzeMood());
+            Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
@@ -21,8 +22,9 @@ namespace MoodAnalyzerTest
             string expected = "Happy";
             //create a object of cass moodanalyzer with i am happy
             MoodAnalyze moodAnalyzer = new MoodAnalyze("I am Happy");
+            string result = moodAnalyzer.AnalyzeMood(expected);
             //assertion is a boolean expression at a specific point in a program 
-            Assert.AreEqual(expected, moodAnalyzer.AnalyzeMood());
+            Assert.AreEqual(expected, result);
         }
         public void GivenNullMoodShouldReturnHappy()
         {
@@ -40,7 +42,7 @@ namespace MoodAnalyzerTest
                 Assert.AreEqual(MoodAnalyzerCustomException.ExceptionsType.NULL_MESSAGE, e.type);
             }
         }
-        [Test]
+        [TestMethod]
         // [DataRow(" ")]
         public void GivenEmptyMood_ShouldThrow_MoodAnalysisEmptyTypeException()
         {
@@ -56,7 +58,7 @@ namespace MoodAnalyzerTest
                 Assert.AreEqual("Message should not be Empty", e.Message);
             }
         }
-        [Test]
+        [TestMethod]
         // [DataRow(null)]
         public void GivenNullMood_ShouldThrow_MoodAnalysisEmptyTypeException()
         {
@@ -73,5 +75,12 @@ namespace MoodAnalyzerTest
             }
         }
 
+        public void GivenMoodClassNAme-ShouldReturn_MoodObject()
+        {
+            object expected = new MoodAnalyze();
+            object result = MoodAnalyzerFactory.CreateMoodAnalyzer("MoodAnalyzer.Mood");
+            expected.Equals(result);
+
+        }
     }
 }
